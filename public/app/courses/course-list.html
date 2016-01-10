@@ -1,5 +1,6 @@
 <div class="container top-padding-med">
     <div class="pull-right">
+        <a href="/courses/add">Add New Course</a>
         <form class="form-inline">
             <div class="form-group">
                 <input ng-model="searchText" placeholder="Filter" class="form-control" />
@@ -18,7 +19,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="course in courses | filter:searchText | orderBy:sortOrder">
-                <td>{{course.title}}</td>
+                <td><a href="/course/{{course._id}}">{{course.title}}</a></td>
                 <td>{{course.published | date}}</td>
             </tr>
         </tbody>

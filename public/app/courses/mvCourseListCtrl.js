@@ -1,4 +1,4 @@
-angular.module('app').controller('mvCourseListCtrl', function($http, $scope, mvCachedCourses) {
+angular.module('app').controller('mvCourseListCtrl', function($http, $scope, mvCachedCourses, $location) {
   $scope.courses = mvCachedCourses.query();
 
   $scope.sortOptions = [{value:"title",text: "Sort by Title"},
@@ -17,14 +17,17 @@ angular.module('app').controller('mvCourseListCtrl', function($http, $scope, mvC
     });
   }
 
-  $scope.addCourse = function(course){
-    console.log(course);
-    $http.post('/api/courses').then(function(response) {
+  $scope.addCourse = function(isValid){
+    //console.log(isValid);
+    if(isValid){
+      console.log($scope.course);
+      $http.post('/api/courses',$scope.course).then(function(response) {
         console.log(response);
-        if (response.data) {
-            //$scope.allCategory=response.data; 
-        } 
-    });
+        $location.path('/courses');
+        
+      });
+    }
+   
 
   }
 });

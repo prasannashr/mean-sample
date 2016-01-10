@@ -1,4 +1,4 @@
-angular.module('app', ['ngResource', 'ngRoute']);
+angular.module('app', ['ngResource', 'ngRoute','ngYoutubeEmbed']);
 
 angular.module('app').config(function($routeProvider, $locationProvider) {
   var routeRoleChecks = {
@@ -34,6 +34,9 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
       })
      .when('/courses/add', { templateUrl: '/partials/courses/course-add',
         controller: 'mvCourseListCtrl'
+      })
+     .when('/course/:id', { templateUrl: '/partials/courses/course-details',
+        controller: 'mvCourseDetailCtrl'
       })
 
 });

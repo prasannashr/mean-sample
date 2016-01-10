@@ -26,25 +26,27 @@
 </style>
 <div class="container top-padding-med" ng-init="getAllCategory()">
     <div class="well">
+        <form method="post" name="form">
         <div class="formLayout">
             <label>Course Title</label>
-            <input id="name" name="name" ng-model="course.title"><br>
+            <input id="name" name="name" ng-model="course.title" required><br>
             <label>Course Catgory</label>
-            <select ng-model="course.category" >
+            <select ng-model="course.category" required>
               <option value=""> -- choose Category -- </option>
               <option ng-repeat="category in allCategory" value="{{category._id}}">{{category.categoryName}}</option>
             </select>
             <br>
             <label>Description</label>
-            <textarea rows="10" cols="35" ng-model="course.desc"></textarea><br><br>
+            <textarea rows="10" cols="35" ng-model="course.description" required></textarea><br><br>
             <label>Video Link</label>
-            <input id="Text1" name="name" size="150" width="30" ng-model="course.videolink" ><br>
+            <input id="Text1" name="name" size="150" width="30" ng-model="course.videolink" required><br>
             <label>Publish</label>
             <input type="checkbox" id="publish" name="publish" ng-model="course.publish" ><br>
             <label>Featured</label>
             <input type="checkbox" id="featured" name="featured" ng-model="course.featured" ><br>
             <label></label>
-            <input type="submit" id="add" value="Add" name="add" ng-click="addCourse(course)"><br>
+            <input type="submit" id="add" value="Add" name="add" ng-click="addCourse(form.$valid)"><br>
         </div>
+        </form>
     </div>
 </div>
