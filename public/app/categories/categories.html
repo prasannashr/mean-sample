@@ -1,0 +1,57 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+    background-color: #f5f5f5
+}
+</style>
+<div class="container" ng-init="getAllCategory()">
+    <div class="well">
+        <form name="addCategoryForm" class="form-horizontal">
+            <fieldset>
+                <legend>Add Catetory</legend>
+                <div class="form-group">
+                    <label for="categoryName" class="col-md-2 control-label">Category Name</label>
+                    <div class="col-md-5">
+                        <input name="categoryName" type="text" placeholder="Category Name" ng-model="categoryName" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <div class="pull-right">
+                            <button ng-click="addcategory()" ng-disabled="addCategoryForm.$invalid" class="btn btn-primary">Add</button>
+                            &nbsp;
+                            <a href="/" class="btn btn-default">Reset</a></div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="well">
+        <table>
+            <tr>
+                <td><b>Date</b></td>
+                <td><b>Categories</b></td>
+                <td colspan="2" align="center"><center><b>Action </b></center></td>
+            </tr>
+            <tr ng-repeat="cat in allCategory | orderBy:'categoryName'">
+                <td>{{cat.createdAt | date:'yyyy-MM-dd'}}</td>
+                <td>{{cat.categoryName}}</td>
+                <td><a href="">Edit</a></td>
+                <td><a href="" ng-click="deleteCategory(cat._id)">Delete</a></td>
+            </tr>
+        </table>
+        <h3>In Json Format</h3>
+        <pre>{{allCategory | json}}</pre>
+    </div>
+</div>
