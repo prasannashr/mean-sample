@@ -15,12 +15,15 @@
             <tr>
                 <th>Title</th>
                 <th>Publish Date</th>
+                <th colspan="2"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="course in courses | filter:searchText | orderBy:sortOrder">
                 <td><a href="/course/{{course._id}}">{{course.title}}</a></td>
                 <td>{{course.published | date}}</td>
+                <td><a href="/courses/edit/{{course._id}}">Edit</a></td>
+                <td><a href="" ng-click="deleteCourse(course._id)">Delete</a></td>
             </tr>
         </tbody>
     </table>

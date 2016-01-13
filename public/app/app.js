@@ -1,4 +1,4 @@
-angular.module('app', ['ngResource', 'ngRoute','ngYoutubeEmbed']);
+angular.module('app', ['ngResource', 'ngRoute']);
 
 angular.module('app').config(function($routeProvider, $locationProvider) {
   var routeRoleChecks = {
@@ -35,12 +35,30 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
      .when('/courses/add', { templateUrl: '/partials/courses/course-add',
         controller: 'mvCourseListCtrl'
       })
+     .when('/courses/edit/:id', { templateUrl: '/partials/courses/course-edit',
+        controller: 'mvCourseDetailCtrl'
+      })
      .when('/course/:id', { templateUrl: '/partials/courses/course-details',
         controller: 'mvCourseDetailCtrl'
       })
 
 });
-
+angular.module('app').directive('myYoutube', function($sce) {
+  return {
+    restrict: 'EA',
+    scope: { code:'=' },
+    replace: true,
+    template: '<div style="height:400px;"><iframe width="800px" height="400px" src="{{url}}" frameborder="0" allowfullscreen></iframe></div>',
+    link: function (scope) {
+        console.log('here');
+        scope.$watch('code', function (newVal) {
+           if (newVal) {
+               scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + newVal);
+           }
+        });
+    }
+  };
+});
 angular.module('app').run(function($rootScope, $location) {
   $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
     if(rejection === 'not authorized') {

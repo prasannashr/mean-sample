@@ -1,11 +1,10 @@
 <div class="container top-padding-med">
 	<div class="well">
 		<h2>{{course.title}}</h2>
-		<p>Published: {{course.published | date}}</p>
+		<p>Published: {{course.published | date}} <a href="/courses/edit/{{course._id}}">Edit</a></p>
 		<p>{{course.description}}</p>
 		<p ng-show="course">
-		{{course.videolink}}
-		<ng-youtube-embed url="course.videolink" width="600px" height="400px" autohide="true" theme="light"></ng-youtube-embed>
+			<div my-youtube code="course.videolink"></div>
 		</p>
 	</div>
 </div>
