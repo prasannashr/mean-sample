@@ -30,13 +30,13 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         controller: 'mvCourseListCtrl'
       })
      .when('/categories', { templateUrl: '/partials/categories/categories',
-        controller: 'mvCategoriesListCtrl'
+        controller: 'mvCategoriesListCtrl', resolve: routeRoleChecks.admin
       })
      .when('/courses/add', { templateUrl: '/partials/courses/course-add',
-        controller: 'mvCourseListCtrl'
+        controller: 'mvCourseListCtrl', resolve: routeRoleChecks.admin
       })
      .when('/courses/edit/:id', { templateUrl: '/partials/courses/course-edit',
-        controller: 'mvCourseDetailCtrl'
+        controller: 'mvCourseDetailCtrl', resolve: routeRoleChecks.admin
       })
      .when('/course/:id', { templateUrl: '/partials/courses/course-details',
         controller: 'mvCourseDetailCtrl'

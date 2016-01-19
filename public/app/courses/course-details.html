@@ -1,10 +1,15 @@
 <div class="container top-padding-med">
 	<div class="well">
 		<h2>{{course.title}}</h2>
-		<p>Published: {{course.published | date}} <a href="/courses/edit/{{course._id}}">Edit</a></p>
+		<p>Published: {{course.published | date}} 
+		<a href="/courses/edit/{{course._id}}" ng-show="identity.isAuthenticated() && identity.isAuthorized('admin')">Edit</a></p>
 		<p>{{course.description}}</p>
-		<p ng-show="course">
-			<div my-youtube code="course.videolink"></div>
+		<p ng-show="course" >
+			<div my-youtube code="course.videolink" ng-show="identity.isAuthenticated()"></div>
 		</p>
+		<div ng-show="!identity.isAuthenticated()">
+			<a href="/signup">Please Sign Up or Login first to watch this video. Thank you</a>
+		</div>
+		
 	</div>
 </div>

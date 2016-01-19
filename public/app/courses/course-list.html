@@ -1,6 +1,6 @@
-<div class="container top-padding-med">
+<div class="container top-padding-med" ng-init="getAllCategory()">
     <div class="pull-right">
-        <a href="/courses/add">Add New Course</a>
+        <a href="/courses/add" ng-show="identity.isAuthenticated() && identity.isAuthorized('admin')">Add New Course</a>
         <form class="form-inline">
             <div class="form-group">
                 <input ng-model="searchText" placeholder="Filter" class="form-control" />
@@ -14,17 +14,20 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Publish Date</th>
-                <th colspan="2"></th>
+                <th colspan="2" ng-show="identity.isAuthorized('admin')"></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="course in courses | filter:searchText | orderBy:sortOrder">
                 <td><a href="/course/{{course._id}}">{{course.title}}</a></td>
+                <td>{{showCategory(course.category)}}</td>
                 <td>{{course.published | date}}</td>
-                <td><a href="/courses/edit/{{course._id}}">Edit</a></td>
-                <td><a href="" ng-click="deleteCourse(course._id)">Delete</a></td>
+                <td ng-show="identity.isAuthenticated() && identity.isAuthorized('admin')"><a href="/courses/edit/{{course._id}}">Edit</a></td>
+                <td ng-show="identity.isAuthenticated() && identity.isAuthorized('admin')"><a href="" ng-click="deleteCourse(course._id)">Delete</a></td>
             </tr>
         </tbody>
     </table>
 </div>
+<pre>{{allCategory | json}}</pre>
