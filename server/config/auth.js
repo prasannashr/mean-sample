@@ -15,6 +15,7 @@ exports.authenticate = function(req, res, next) {
 
 exports.requiresApiLogin = function(req, res, next) {
   if(!req.isAuthenticated()) {
+    res.redirect('/');
     res.status(403);
     res.end();
   } else {

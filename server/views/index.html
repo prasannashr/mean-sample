@@ -16,6 +16,7 @@
                 <ul class="nav navbar-nav" ng-controller="mvNavBarLoginCtrl">
                     <li><a href="/">Home</a></li>
                     <li><a href="/courses">Courses</a></li>
+                    <li><a href="/chat" ng-show="identity.isAuthenticated()">Chat Room</a></li>
                     <li ng-show="identity.isAuthorized('admin')"><a href="/categories">Course Category</a></li>
                 </ul>
                 <div ng-include="'/partials/account/navbar-login'"></div>

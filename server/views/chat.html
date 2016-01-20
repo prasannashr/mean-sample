@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/script.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="mvNavBarLoginCtrl" ng-init="setUserName()">
+    <div id="main" class="container">     
+      <div id="chatEntries"></div>
+      <div id="entries" class="row">
+        <input type="text" id="messageInput">
+        <div class="btn-group">
+          <button id="submit" data-loading-text="Send" class="btn">Send</button>
+          <button data-toggle="dropdown" class="btn dropdown-toggle"><span class="caret"></span></button>
+          
+        </div>
+      </div>
+      <div id="nbUsersDiv">
+        <p>There is <span id="nbUsers"></span> connected user(s).</p>
+      </div>
+    </div>
+
+    <div id="modalPseudo" class="modal fade" >
+    <div class="modal-header">
+    </div>
+    <div class="modal-body">
+      <p>Hi {{identity.currentUser.firstName}}</p>
+      <input type="text" disabled id="pseudoInput" ng-model="identity.currentUser.firstName">
+      <div id="alertPseudo" class="alert alert-error">This name is already used ! Choose another one.</div>
+    </div>
+    <div class="modal-footer">
+      <button id="pseudoSubmit" class="btn btn-primary">Go to the chat</button>
+    </div>
+  </div>
+  </body>
+  
+
+    <script type="text/javascript" src="/vendor/toastr/toastr.js"></script>
+    <script type="text/javascript" src="/vendor/angular/angular.js"></script>
+    <script type="text/javascript" src="/vendor/angular-resource/angular-resource.js"></script>
+    <script type="text/javascript" src="/vendor/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/app/app.js"></script>
+    <script type="text/javascript" src="/app/main/mvMainCtrl.js"></script>
+    <script type="text/javascript" src="/app/account/mvNavBarLoginCtrl.js"></script>
+    <script type="text/javascript" src="/app/account/mvIdentity.js"></script>
+    <script type="text/javascript" src="/app/common/mvNotifier.js"></script>
+    <script type="text/javascript" src="/app/account/mvAuth.js"></script>
+    <script type="text/javascript" src="/app/account/mvUser.js"></script>
+  
+</html>

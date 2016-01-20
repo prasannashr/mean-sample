@@ -9,6 +9,9 @@ angular.module('app').controller('mvNavBarLoginCtrl', function($scope, $http, mv
       }
     });
   }
+  $scope.setUserName = function(){
+    setPseudo();
+  }
 
   $scope.signout = function() {
     mvAuth.logoutUser().then(function() {
@@ -18,4 +21,9 @@ angular.module('app').controller('mvNavBarLoginCtrl', function($scope, $http, mv
       $location.path('/');
     })
   }
+});
+angular.module('app').controller('mvChatCtrl', function($scope, $http, mvIdentity, mvNotifier, mvAuth, $location) {
+  $scope.identity = mvIdentity;
+  //alert("chat");
+  location.reload();
 });
